@@ -14,9 +14,9 @@
       <div class="toolbar"><div class="tabs" role="group" aria-label="任务筛选"><button type="button" data-filter="all" class="active">全部</button><button type="button" data-filter="active">未完成</button><button type="button" data-filter="completed">已完成</button></div><span id="count">0 项待完成</span></div>
       <ul id="todo-list" aria-live="polite"></ul>
       <div id="empty" class="empty" hidden><span>☕</span><p>这里还没有任务，添加第一件事吧。</p></div>
-      <footer><span id="summary">已完成 0 / 共 0 项</span></footer>
+      <footer><span id="summary">已完成 0 / 共 0 项</span><button type="button" id="clear-completed">清除已完成</button></footer>
     </section>
-    <p class="hint">自动保存在本地浏览器 · 刷新后仍会保留</p>
+    <p class="hint">自动保存在本地浏览器 · 页面刷新后任务仍会保留</p>
   </main>
   <script src="app.js"></script>
 </body>

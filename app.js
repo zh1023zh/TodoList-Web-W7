@@ -41,6 +41,11 @@ function toggleTodo(id) {
   save();
   render();
 }
+// 课堂独立练习：禁用 AI 后自己完成函数体。
+// 预期：只保留未完成事项，并保存、重渲染。
+function clearCompleted() {
+  // TODO: 请独立填写三步操作。
+}
 function setFilter(filter) {
   if (!['all', 'active', 'completed'].includes(filter)) return;
   currentFilter = filter;
@@ -78,9 +83,11 @@ function render() {
   document.querySelector('#empty').hidden = visibleTodos().length !== 0;
   document.querySelector('#count').textContent = `${todos.length - done} 项待完成`;
   document.querySelector('#summary').textContent = `已完成 ${done} / 共 ${todos.length} 项`;
+  document.querySelector('#clear-completed').disabled = done === 0;
 }
 form.addEventListener('submit', event => { event.preventDefault(); addTodo(input.value); input.value = ''; });
 render();
 document.querySelectorAll('[data-filter]').forEach(button => {
   button.addEventListener('click', () => setFilter(button.dataset.filter));
 });
+document.querySelector('#clear-completed').addEventListener('click', clearCompleted);
