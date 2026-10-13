@@ -1,5 +1,6 @@
 // V2 第2阶段：添加、删除和切换均创建新数组，然后渲染。
 let todos = [];
+let currentFilter = 'all';
 const form = document.querySelector('#todo-form');
 const input = document.querySelector('#todo-input');
 const list = document.querySelector('#todo-list');
@@ -17,9 +18,22 @@ function toggleTodo(id) {
   todos = todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo);
   render();
 }
+function setFilter(filter) {
+  if (!['all', 'active', 'completed'].includes(filter)) return;
+  currentFilter = filter;
+  document.querySelectorAll('[data-filter]').forEach(button => {
+    button.classList.toggle('active', button.dataset.filter === filter);
+  });
+  render();
+}
+function visibleTodos() {
+  if (currentFilter === 'active') return todos.filter(t => !t.completed);
+  if (currentFilter === 'completed') return todos.filter(t => t.completed);
+  return todos;
+}
 function render() {
   list.replaceChildren();
-  todos.forEach(todo => {
+  visibleTodos().forEach(todo => {
     const li = document.createElement('li');
     li.className = `todo${todo.completed ? ' done' : ''}`;
     const checkbox = document.createElement('input');
@@ -38,9 +52,12 @@ function render() {
     list.append(li);
   });
   const done = todos.filter(todo => todo.completed).length;
-  document.querySelector('#empty').hidden = todos.length !== 0;
+  document.querySelector('#empty').hidden = visibleTodos().length !== 0;
   document.querySelector('#count').textContent = `${todos.length - done} 项待完成`;
   document.querySelector('#summary').textContent = `已完成 ${done} / 共 ${todos.length} 项`;
 }
 form.addEventListener('submit', event => { event.preventDefault(); addTodo(input.value); input.value = ''; });
 render();
+document.querySelectorAll('[data-filter]').forEach(button => {
+  button.addEventListener('click', () => setFilter(button.dataset.filter));
+});

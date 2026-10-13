@@ -11,7 +11,7 @@
     <header class="header"><span class="eyebrow">WEB PROGRAMMING · WEEK 07</span><h1>我的任务清单 <span>✦</span></h1><p>有条理地安排今天，从一件小事开始。</p></header>
     <section class="panel">
       <form id="todo-form" class="entry"><input id="todo-input" maxlength="120" placeholder="输入新任务，例如：复习 JavaScript 闭包" aria-label="新任务内容" required /><button type="submit">＋ 添加任务</button></form>
-      <div class="toolbar"><span id="count">0 项待完成</span></div>
+      <div class="toolbar"><div class="tabs" role="group" aria-label="任务筛选"><button type="button" data-filter="all" class="active">全部</button><button type="button" data-filter="active">未完成</button><button type="button" data-filter="completed">已完成</button></div><span id="count">0 项待完成</span></div>
       <ul id="todo-list" aria-live="polite"></ul>
       <div id="empty" class="empty" hidden><span>☕</span><p>这里还没有任务，添加第一件事吧。</p></div>
       <footer><span id="summary">已完成 0 / 共 0 项</span></footer>
