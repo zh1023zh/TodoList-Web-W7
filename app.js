@@ -1,21 +1,44 @@
 // V2 第2阶段：添加、删除和切换均创建新数组，然后渲染。
-let todos = [];
+const STORAGE_KEY = 'web-w7-todos-v2';
+let todos = load();
 let currentFilter = 'all';
 const form = document.querySelector('#todo-form');
 const input = document.querySelector('#todo-input');
 const list = document.querySelector('#todo-list');
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(t => t && typeof t.id === 'string'
+      && typeof t.text === 'string' && typeof t.completed === 'boolean');
+  } catch (error) {
+    console.warn('读取本地任务失败，使用空列表：', error);
+    return [];
+  }
+}
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(todos)); }
+  catch (error) { console.warn('保存任务失败：', error); }
+}
+
 function addTodo(text) {
   const value = String(text).trim();
   if (!value) return;
   todos = [...todos, { id: `${Date.now()}-${Math.random()}`, text: value, completed: false }];
+  save();
   render();
 }
 function removeTodo(id) {
   todos = todos.filter(todo => todo.id !== id);
+  save();
   render();
 }
 function toggleTodo(id) {
   todos = todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo);
+  save();
   render();
 }
 function setFilter(filter) {
