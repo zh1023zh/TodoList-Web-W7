@@ -1,0 +1,8 @@
+b3f52bb  chore: bootstrap week 6 DOM-only todo list
+ec58d02  refactor: introduce todos array and render for addTodo
+8e9595e  feat: implement removeTodo with filter and toggleTodo with map
+4ace256  feat: add view-only filters without mutating todos
+9f8965d  feat: persist and restore todos with localStorage
+42e77bb  test: prepare independent clearCompleted exercise placeholder
+faf1db5  docs: attach completed reference implementation (not independent evidence)
+e750805  docs: add history navigation and authenticity notes
