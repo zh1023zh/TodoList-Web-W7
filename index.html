@@ -1,1 +1,23 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Todo V1.0</title><link rel="stylesheet" href="style.css"></head><body><main class="app"><header class="header"><h1>我的任务清单 V1.0</h1><p>第6周基础版：任务直接放到 DOM，刷新会丢失。</p></header><section class="panel"><form id="todo-form" class="entry"><input id="todo-input" required placeholder="输入待办事项"><button>添加任务</button></form><ul id="todo-list"></ul></section></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo List V2.0 | 第7周</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header"><span class="eyebrow">WEB PROGRAMMING · WEEK 07</span><h1>我的任务清单 <span>✦</span></h1><p>有条理地安排今天，从一件小事开始。</p></header>
+    <section class="panel">
+      <form id="todo-form" class="entry"><input id="todo-input" maxlength="120" placeholder="输入新任务，例如：复习 JavaScript 闭包" aria-label="新任务内容" required /><button type="submit">＋ 添加任务</button></form>
+      <div class="toolbar"><span id="count">0 项待完成</span></div>
+      <ul id="todo-list" aria-live="polite"></ul>
+      <div id="empty" class="empty" hidden><span>☕</span><p>这里还没有任务，添加第一件事吧。</p></div>
+      <footer><span id="summary">已完成 0 / 共 0 项</span></footer>
+    </section>
+    <p class="hint">第7周第1阶段 · 刷新后数据暂不会保留</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
